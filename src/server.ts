@@ -2,32 +2,23 @@ import { tictactoeInit } from './tictactoe/index'
 // setup server
 
 const http = require('http')
-const express = require('express')
 const path = require('path')
+const express = require('express')
 const socketio = require('socket.io')
-
-
-
 
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server, {
 	cors: {
-		origin: '*',
-	},
+		origin: '*'
+	}
 })
 
-
-
-
 io.on('connection', (socket) => {
-
 	tictactoeInit(io, socket)
-
 }
 
 )
-
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'index.html')))

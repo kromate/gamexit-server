@@ -8,6 +8,7 @@ class RoomHandler {
     }
 
     async joinGame(message) {
+        console.log(message)
         const connectedSockets = this.io.sockets.adapter.rooms.get(message.roomId)
         const socketRooms = Array.from(this.socket.rooms.values()).filter(
             (r) => r !== this.socket.id
@@ -19,7 +20,7 @@ class RoomHandler {
         ) {
             this.socket.emit('tic_room_join_error', {
                 status: 500,
-                error: 'Room is full please choose another room to play!',
+                error: 'Room is full please choose another room to play!'
             })
         } else {
             await this.socket.join(message.roomId)
@@ -33,10 +34,6 @@ class RoomHandler {
             }
         }
     }
-
 }
-
-
-
 
 module.exports = RoomHandler

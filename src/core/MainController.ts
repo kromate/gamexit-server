@@ -11,10 +11,6 @@ class SocketHandler {
         this.socket.emit('connected')
         // console.log('New Socket connected: ', this.socket.id)
     }
-
 }
-
-
-
 
 module.exports = SocketHandler
